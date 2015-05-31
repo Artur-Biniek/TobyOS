@@ -1,6 +1,8 @@
 SYSTEM_HEADER_PROJECTS="libc tobyos"
 PROJECTS="libc tobyos"
 
+export PATH="$HOME/opt/cross/bin:$PATH"
+
 export MAKE=${MAKE:-make}
 export HOST=${HOST:-$(./default-host.sh)}
 

@@ -7,14 +7,16 @@ CHECKSUM    equ -(MAGIC + FLAGS)        ; checksum of above, to prove we are mul
 
 KSTACK_SIZE equ 16384			; kernel stack size
  
-section .multiboot
-align 4
+	section .multiboot
+	align 4
+	
 	dd MAGIC
 	dd FLAGS
 	dd CHECKSUM
  
-section .text
-global _start
+	section .text
+	global _start
+	
 _start:		
 	mov esp, stack_top
 	
@@ -36,8 +38,9 @@ _start:
 	hlt
 	jmp .hang
 
-section .bootstrap_stack, nobits
-align 4
+	section .bootstrap_stack, nobits
+	align 4
+	
 stack_bottom:
 	resb KSTACK_SIZE
 stack_top:

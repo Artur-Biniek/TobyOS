@@ -23,7 +23,16 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=2
+current_page=1
 FILE_NAME_0=0;Sh;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Fheaders.sh;0;8
-FILE_NAME_1=344;Sh;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Fconfig.sh;0;8
+FILE_NAME_1=100;Sh;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Fconfig.sh;0;8
 FILE_NAME_2=118;Sh;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftarget-triplet-to-arch.sh;0;8
+FILE_NAME_3=0;Sh;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Fbuild.sh;0;8
+FILE_NAME_4=227;C;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Fkernel%2Fkernel.c;0;8
+FILE_NAME_5=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Farch%2Fi386%2Fmake.config;0;8
+FILE_NAME_6=1108;C;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Farch%2Fi386%2Ftty.c;0;8
+FILE_NAME_7=788;C;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Fsysroot%2Fusr%2Finclude%2Fkernel%2Fvga.h;0;8
+FILE_NAME_8=88;C;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Flibc%2Fstdio%2Fprintf.c;0;8
+FILE_NAME_9=187;C;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Flibc%2Fstdio%2Fputchar.c;0;8
+FILE_NAME_10=863;ASM;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Farch%2Fi386%2Fboot.s;0;8
+FILE_NAME_11=899;None;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Farch%2Fi386%2Flinker.ld;0;8
