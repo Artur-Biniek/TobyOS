@@ -11,6 +11,6 @@ void kernel_early(void)
 }
 
 void kernel_main(void)
-{
+{			
 	printf("Hello, TobyOS kernel World!\n");
 }

@@ -3,6 +3,7 @@ HOSTARCH:=$(shell ../target-triplet-to-arch.sh $(HOST))
 
 CFLAGS?=-O2 -g
 CPPFLAGS?=
+ASFLAGS?=
 LDFLAGS?=
 LIBS?=
 
@@ -14,6 +15,7 @@ INCLUDEDIR?=$(PREFIX)/include
 
 CFLAGS:=$(CFLAGS) -ffreestanding -fbuiltin -Wall -Wextra
 CPPFLAGS:=$(CPPFLAGS) -D__is_TobyOS_kernel -Iinclude
+ASFLAGS:=$(ASFLAGS)
 LDFLAGS:=$(LDFLAGS)
 LIBS:=$(LIBS) -nostdlib -lk -lgcc
 
@@ -57,8 +59,8 @@ TobyOS.kernel: $(OBJ_LINK_LIST) $(ARCHDIR)/linker.ld
 %.o: %.c
 	$(CC) -c $< -o $@ -std=gnu11 $(CFLAGS) $(CPPFLAGS)
 
-%.o: %.S
-	$(CC) -c $< -o $@ $(CFLAGS) $(CPPFLAGS)
+%.o: %.s
+	$(AS) $< -o $@ $(ASFLAGS)
 
 clean:
 	rm -f TobyOS.kernel $(OBJS) $(ALL_OUR_OBJS) *.o */*.o */*/*.o

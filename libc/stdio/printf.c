@@ -16,8 +16,8 @@ int printf(const char* restrict format, ...)
 
 	int written = 0;
 	size_t amount;
-	bool rejected_bad_specifier = false;
-
+	bool rejected_bad_specifier = false;	
+	
 	while ( *format != '\0' )
 	{
 		if ( *format != '%' )
