@@ -18,28 +18,32 @@ KSTACK_SIZE equ 16384			; kernel stack size
 	global _start
 	
 _start:		
-	mov esp, stack_top
+	cli
+	
+	mov esp, stack_top	
 	
 	; Initialize the core kernel before running the global constructors.
 	extern kernel_early
 	call kernel_early
-	
-	; Call the global constructors.
+
 	extern _init
+	; Call the global constructors.
 	call _init
 	
 	; Transfer control to the main kernel.
 	extern kernel_main
-	call kernel_main	
- 
+	call kernel_main		
+	
+	global hang_kernel;
+hang_kernel:	
 	; Hang if we get here somehow from the kernel.
 	cli
-.hang:
-	hlt
-	jmp .hang
+	hlt 
+	jmp hang_kernel
 
 	section .bootstrap_stack, nobits
 	align 4
+	
 	
 stack_bottom:
 	resb KSTACK_SIZE
