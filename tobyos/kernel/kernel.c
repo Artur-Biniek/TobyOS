@@ -10,7 +10,7 @@
 #include "../arch/i386/idt.h"
 #endif
 
-void kernel_early(void)
+void kernel_init(void)
 {
 	terminal_initialize();
 	gdt_initialize();
