@@ -26,6 +26,8 @@ _start:
 	extern kernel_init
 	call kernel_init	
 	
+	int 0x26
+	
 	; Transfer control to the main kernel.
 	extern kernel_main
 	call kernel_main		
