@@ -3,12 +3,19 @@
 #include <string.h>
 #include <stdio.h>
 
+#include <kernel/kernel.h>
 #include <kernel/tty.h>
 
 #if defined (__i386__)
 #include "../arch/i386/gdt.h"
 #include "../arch/i386/idt.h"
 #endif
+
+void KPANIC(const char* message)
+{
+	printf(message);
+	hang_kernel();
+}
 
 void kernel_init(void)
 {

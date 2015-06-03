@@ -26,8 +26,6 @@ _start:
 	extern kernel_init
 	call kernel_init	
 	
-	jmp $
-	
 	; Transfer control to the main kernel.
 	extern kernel_main
 	call kernel_main		
