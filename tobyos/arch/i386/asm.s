@@ -28,8 +28,7 @@ cs_reload:
 idt_set:
 		
 	mov eax, [esp + 4]
-	lidt [eax]
-	
+	lidt [eax]	
 	
 	ret
 

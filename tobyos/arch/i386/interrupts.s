@@ -7,7 +7,6 @@ interrupt_handler_%1:
 %endmacro
 
 %macro interrupt_error_code 1
-
 global interrupt_handler_%1
 interrupt_handler_%1:
 	; [esp] = error code pushed by cpu
@@ -22,6 +21,8 @@ interrupt_handler_null:
 interrupt_handler_common:
 	extern interrupt_handler
 
+	cli
+	
 	push eax
 	push ecx
 	push edx
@@ -44,7 +45,7 @@ interrupt_handler_common:
 	pop ecx
 	pop eax
 	
-	add esp, 8	; Remove int_no and err_code
+	add esp, 8	; Remove int_no and err_code	
 	
 	iret;
 	
@@ -83,7 +84,7 @@ interrupt_no_error	29	; Intel reserved. Do not use.
 interrupt_no_error	30	; Intel reserved. Do not use.
 interrupt_no_error	31	; Intel reserved. Do not use.
 
-interrupt_no_error	0x26	; SYSTEM CALL
+interrupt_no_error	38	; SYSTEM CALL (int 0x26)
 
 
 

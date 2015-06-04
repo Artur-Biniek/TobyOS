@@ -27,4 +27,7 @@ void kernel_init(void)
 void kernel_main(void)
 {			
 	printf("Hello, TobyOS kernel World!\n");
+	
+	uint16_t k = 5 / 0;
+	uint16_t z = k - 1;
 }

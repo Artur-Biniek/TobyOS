@@ -13,6 +13,9 @@ KSTACK_SIZE equ 16384			; kernel stack size
 	dd MAGIC
 	dd FLAGS
 	dd CHECKSUM
+	
+some_mag:
+	db 0
  
 	section .text
 	global _start
@@ -26,18 +29,18 @@ _start:
 	extern kernel_init
 	call kernel_init	
 	
-	int 0x26
-	
 	; Transfer control to the main kernel.
 	extern kernel_main
-	call kernel_main		
+	call kernel_main
+	
+	mov eax, 12
+	idiv byte [some_mag]	
 	
 	global hang_kernel;
-hang_kernel:	
-	; Hang if we get here somehow from the kernel.
+hang_kernel:		
 	cli
 	hlt 
-	jmp hang_kernel
+	jmp hang_kernel		; Hang
 
 	section .bootstrap_stack, nobits
 	align 4

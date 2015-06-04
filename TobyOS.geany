@@ -23,14 +23,18 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=7
+current_page=14
 FILE_NAME_0=105;C;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Farch%2Fi386%2Ftty.c;0;8
 FILE_NAME_1=80;C;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Finclude%2Fkernel%2Fvga.h;0;8
-FILE_NAME_2=44;C;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Finclude%2Fkernel%2Ftty.h;0;8
-FILE_NAME_3=114;C;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Farch%2Fi386%2Fgdt.h;0;8
-FILE_NAME_4=387;C;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Farch%2Fi386%2Fgdt.c;0;8
-FILE_NAME_5=615;ASM;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Farch%2Fi386%2Fboot.s;0;8
-FILE_NAME_6=187;C;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Fkernel%2Fkernel.c;0;8
-FILE_NAME_7=659;ASM;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Farch%2Fi386%2Fasm.s;0;8
-FILE_NAME_8=51;C;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Farch%2Fi386%2Fasm.h;0;8
-FILE_NAME_9=142;C;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Farch%2Fi386%2Fidt.c;0;8
+FILE_NAME_2=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Finclude%2Fkernel%2Ftty.h;0;8
+FILE_NAME_3=291;C;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Fkernel%2Fkernel.c;0;8
+FILE_NAME_4=652;ASM;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Farch%2Fi386%2Fasm.s;0;8
+FILE_NAME_5=51;C;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Farch%2Fi386%2Fasm.h;0;8
+FILE_NAME_6=1453;C;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Farch%2Fi386%2Fidt.c;0;8
+FILE_NAME_7=236;None;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Farch%2Fi386%2Fmake.config;0;8
+FILE_NAME_8=57;C;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Finclude%2Fkernel%2Fkernel.h;0;8
+FILE_NAME_9=2315;ASM;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Farch%2Fi386%2Finterrupts.s;0;8
+FILE_NAME_10=0;C;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Finclude%2Fkernel%2Finterrupt.h;0;8
+FILE_NAME_11=88;C;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Fkernel%2Finterrupt.c;0;8
+FILE_NAME_12=196;Make;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2FMakefile;0;8
+FILE_NAME_13=907;ASM;0;EUTF-8;1;1;0;%2Fhome%2Fbiniu%2FProjects%2FTobyOS%2Ftobyos%2Farch%2Fi386%2Fboot.s;0;8

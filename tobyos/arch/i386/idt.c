@@ -10,11 +10,11 @@
 
 typedef struct
 {
-	uint16_t offset_low;
+	uint16_t base_low;
 	uint16_t segment;
 	uint8_t zero;
 	uint8_t flags;
-	uint16_t offset_high;
+	uint16_t base_high;
 } idt_entry_t;
 
 typedef struct
@@ -54,13 +54,42 @@ const char* idt_get_std_error(uint8_t err_no)
 	return exception_names[err_no];
 }
 
+static void idt_set_gate(uint16_t number, uint16_t segment, uintptr_t base, uint8_t flags)
+{
+	idt_entry_t* entry = & idt_entries[number];
+	
+	entry->segment = segment;
+	entry->base_low = base & 0xFFFF;
+	entry->base_high = (base >> 16) & 0xFFFF;
+	entry->zero = 0;
+	entry->flags = flags;
+}
+
 void idt_initialize(void)
 {
-	idt_entry_t t;
+	idt_set_gate(0, 0x08, (uintptr_t) &interrupt_handler_0, 0x8E);
+	idt_set_gate(1, 0x08, (uintptr_t) &interrupt_handler_1, 0x8E);
+	idt_set_gate(2, 0x08, (uintptr_t) &interrupt_handler_2, 0x8E);
+	idt_set_gate(3, 0x08, (uintptr_t) &interrupt_handler_3, 0x8E);
+	idt_set_gate(4, 0x08, (uintptr_t) &interrupt_handler_4, 0x8E);
+	idt_set_gate(5, 0x08, (uintptr_t) &interrupt_handler_5, 0x8E);
+	idt_set_gate(6, 0x08, (uintptr_t) &interrupt_handler_6, 0x8E);
+	idt_set_gate(7, 0x08, (uintptr_t) &interrupt_handler_7, 0x8E);
+	idt_set_gate(8, 0x08, (uintptr_t) &interrupt_handler_8, 0x8E);
+	idt_set_gate(9, 0x08, (uintptr_t) &interrupt_handler_9, 0x8E);
+	idt_set_gate(10, 0x08, (uintptr_t) &interrupt_handler_10, 0x8E);
+	idt_set_gate(11, 0x08, (uintptr_t) &interrupt_handler_11, 0x8E);
+	idt_set_gate(12, 0x08, (uintptr_t) &interrupt_handler_12, 0x8E);
+	idt_set_gate(13, 0x08, (uintptr_t) &interrupt_handler_13, 0x8E);
+	idt_set_gate(14, 0x08, (uintptr_t) &interrupt_handler_14, 0x8E);
+	idt_set_gate(15, 0x08, (uintptr_t) &interrupt_handler_15, 0x8E);
+	idt_set_gate(16, 0x08, (uintptr_t) &interrupt_handler_16, 0x8E);
+	idt_set_gate(17, 0x08, (uintptr_t) &interrupt_handler_17, 0x8E);
 	
-	idt_entries[0] = t;
+	idt_set_gate(38, 0x08, (uintptr_t) &interrupt_handler_38, 0x8E);
 	
-	idt_ptr_t idt_ptr ;
+	idt_ptr_t idt_ptr;
+	
 	idt_ptr.base = (uintptr_t) &idt_entries;
 	idt_ptr.limit = sizeof(idt_entries) - 1;
 	
