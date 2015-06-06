@@ -39,14 +39,33 @@ void terminal_putentryat(char c, uint8_t color, size_t x, size_t y)
 
 void terminal_putchar(char c)
 {
-	terminal_putentryat(c, terminal_color, terminal_column, terminal_row);
-	if ( ++terminal_column == VGA_WIDTH )
+	if (c == '\n')
 	{
 		terminal_column = 0;
-		if ( ++terminal_row == VGA_HEIGHT )
+		terminal_row++;
+	}
+	else 
+	{
+		terminal_putentryat(c, terminal_color, terminal_column, terminal_row);	
+		
+		if (++terminal_column >= VGA_WIDTH)
 		{
-			terminal_row = 0;
-		}
+			terminal_column = 0;
+			terminal_row++;			
+		}		
+	}	
+	
+	if (terminal_row >= VGA_HEIGHT)
+	{
+		terminal_row = VGA_HEIGHT - 1;
+		
+		memmove(terminal_buffer, terminal_buffer + VGA_WIDTH , (VGA_HEIGHT - 1) * VGA_WIDTH * VGA_CHAR_BYTES);
+		
+		size_t i = 0;
+		for (; i < VGA_WIDTH; i++) 
+		{
+			terminal_putentryat(' ', terminal_color, i, VGA_HEIGHT - 1);
+		}		
 	}
 }
 

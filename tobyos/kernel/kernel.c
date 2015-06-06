@@ -25,9 +25,10 @@ void kernel_init(void)
 }
 
 void kernel_main(void)
-{			
-	printf("Hello, TobyOS kernel World!\n");
-	
-	uint16_t k = 5 / 0;
-	uint16_t z = k - 1;
+{	
+	int i = 0;
+	for (; i < 20; i++) 
+	{		
+		printf("Decimal: %d, Hex: %x, Binary: %b\n", i, i, i);
+	}
 }

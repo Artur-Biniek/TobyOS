@@ -13,10 +13,7 @@ KSTACK_SIZE equ 16384			; kernel stack size
 	dd MAGIC
 	dd FLAGS
 	dd CHECKSUM
-	
-some_mag:
-	db 0
- 
+	 
 	section .text
 	global _start
 	
@@ -32,9 +29,6 @@ _start:
 	; Transfer control to the main kernel.
 	extern kernel_main
 	call kernel_main
-	
-	mov eax, 12
-	idiv byte [some_mag]	
 	
 	global hang_kernel;
 hang_kernel:		
