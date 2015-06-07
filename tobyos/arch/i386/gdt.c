@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <sys/gccdefs.h>
 
 #include "gdt.h"
 
@@ -19,7 +20,7 @@ typedef struct
 {
 	uint16_t limit;
 	uint32_t base;
-} __attribute__((packed)) gdt_ptr_t;
+} PACKED gdt_ptr_t;
 
 static gdt_entry_t gdt_entries[GDT_NUM_ENTRIES];
 

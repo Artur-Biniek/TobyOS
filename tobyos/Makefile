@@ -12,7 +12,7 @@ EXEC_PREFIX?=$(PREFIX)
 BOOTDIR?=$(EXEC_PREFIX)/boot
 INCLUDEDIR?=$(PREFIX)/include
 
-CFLAGS:=$(CFLAGS) -ffreestanding -fbuiltin -Wall -Wextra -D__is_TobyOS_kernel -Iinclude
+CFLAGS:=$(CFLAGS) -ffreestanding -fbuiltin -Wall -Wextra -D__is_tobyos_kernel -Iinclude
 ASFLAGS:=$(ASFLAGS)
 LDFLAGS:=$(LDFLAGS)
 LIBS:=$(LIBS) -nostdlib -lk -lgcc

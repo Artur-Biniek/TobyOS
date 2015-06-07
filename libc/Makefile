@@ -11,8 +11,8 @@ EXEC_PREFIX?=$(PREFIX)
 INCLUDEDIR?=$(PREFIX)/include
 LIBDIR?=$(EXEC_PREFIX)/lib
 
-CFLAGS:=$(CFLAGS) -Wall -Wextra -D__is_myos_libc -Iinclude
-LIBK_CFLAGS:=$(CFLAGS) -ffreestanding -fbuiltin -D__is_myos_kernel
+CFLAGS:=$(CFLAGS) -Wall -Wextra -D__is_tobyos_libc -Iinclude
+LIBK_CFLAGS:=$(CFLAGS) -ffreestanding -fbuiltin -D__is_tobyos_kernel
 
 ARCHDIR:=arch/$(HOSTARCH)
 
@@ -32,6 +32,7 @@ string/memcpy.o \
 string/memmove.o \
 string/memset.o \
 string/strlen.o \
+debug/debug_backtrace.o
 
 HOSTEDOBJS:=\
 $(ARCH_HOSTEDOBJS) \

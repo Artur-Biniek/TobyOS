@@ -1,4 +1,5 @@
 #include <kernel/kernel.h>
+#include <sys/gccdefs.h>
 
 #include "idt.h"
 
@@ -21,7 +22,7 @@ typedef struct
 {
 	uint16_t limit;
 	uint32_t base;
-} __attribute__((packed)) idt_ptr_t;
+} PACKED idt_ptr_t;
 
 static idt_entry_t idt_entries[IDT_NUM_ENTRIES];
 
