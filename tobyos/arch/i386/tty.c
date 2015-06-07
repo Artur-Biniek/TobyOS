@@ -17,13 +17,13 @@ void terminal_initialize(void)
 	terminal_color = make_color(COLOR_LIGHT_GREY, COLOR_BLACK);
 	terminal_buffer = VGA_MEMORY;
 	for ( size_t y = 0; y < VGA_HEIGHT; y++ )
-	{
-		for ( size_t x = 0; x < VGA_WIDTH; x++ )
-		{
-			const size_t index = y * VGA_WIDTH + x;
-			terminal_buffer[index] = make_vgaentry(' ', terminal_color);
-		}
-	}
+    {
+      for ( size_t x = 0; x < VGA_WIDTH; x++ )
+        {
+          const size_t index = y * VGA_WIDTH + x;
+          terminal_buffer[index] = make_vgaentry(' ', terminal_color);
+        }
+    }
 }
 
 void terminal_setcolor(uint8_t color)
@@ -44,6 +44,10 @@ void terminal_putchar(char c)
 		terminal_column = 0;
 		terminal_row++;
 	}
+	else if (c == '\b')
+	{
+		/// TODO...
+	}
 	else 
 	{
 		terminal_putentryat(c, terminal_color, terminal_column, terminal_row);	
@@ -55,17 +59,17 @@ void terminal_putchar(char c)
 		}		
 	}	
 	
-	if (terminal_row >= VGA_HEIGHT)
+	if (terminal_row >= VGA_HEIGHT) 
 	{
 		terminal_row = VGA_HEIGHT - 1;
 		
 		memmove(terminal_buffer, terminal_buffer + VGA_WIDTH , (VGA_HEIGHT - 1) * VGA_WIDTH * VGA_CHAR_BYTES);
 		
 		size_t i = 0;
-		for (; i < VGA_WIDTH; i++) 
-		{
-			terminal_putentryat(' ', terminal_color, i, VGA_HEIGHT - 1);
-		}		
+      for (; i < VGA_WIDTH; i++) 
+      {
+        terminal_putentryat(' ', terminal_color, i, VGA_HEIGHT - 1);
+      }		
 	}
 }
 

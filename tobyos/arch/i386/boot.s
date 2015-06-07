@@ -22,7 +22,7 @@ _start:
 		
 	cli
 	
-	; Initialize the core kernel before running the global constructors.
+	; Initialize the core kernel.
 	extern kernel_init
 	call kernel_init	
 	

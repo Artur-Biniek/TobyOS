@@ -2,7 +2,6 @@ HOST?=$(shell ../default-host.sh)
 HOSTARCH:=$(shell ../target-triplet-to-arch.sh $(HOST))
 
 CFLAGS?=-O2 -g
-CPPFLAGS?=
 LDFLAGS?=
 LIBS?=
 
@@ -12,19 +11,15 @@ EXEC_PREFIX?=$(PREFIX)
 INCLUDEDIR?=$(PREFIX)/include
 LIBDIR?=$(EXEC_PREFIX)/lib
 
-CFLAGS:=$(CFLAGS) -Wall -Wextra
-CPPFLAGS:=$(CPPFLAGS) -D__is_myos_libc -Iinclude
-LIBK_CFLAGS:=$(CFLAGS) -ffreestanding -fbuiltin
-LIBK_CPPFLAGS:=$(CPPFLAGS) -D__is_myos_kernel
+CFLAGS:=$(CFLAGS) -Wall -Wextra -D__is_myos_libc -Iinclude
+LIBK_CFLAGS:=$(CFLAGS) -ffreestanding -fbuiltin -D__is_myos_kernel
 
 ARCHDIR:=arch/$(HOSTARCH)
 
 include $(ARCHDIR)/make.config
 
 CFLAGS:=$(CFLAGS) $(ARCH_CFLAGS)
-CPFLAGS:=$(CPPFLAGS) $(ARCH_CPPFLAGS)
 LIBK_CFLAGS:=$(LIBK_CFLAGS) $(KERNEL_ARCH_CFLAGS)
-LIBK_CPFLAGS:=$(LIBK_CPPFLAGS) $(KERNEL_ARCH_CPPFLAGS)
 
 FREEOBJS:=\
 $(ARCH_FREEOBJS) \
@@ -63,16 +58,16 @@ libk.a: $(LIBK_OBJS)
 	$(AR) rcs $@ $(LIBK_OBJS)
 
 %.o: %.c
-	$(CC) -c $< -o $@ -std=gnu11 $(CFLAGS) $(CPPFLAGS)
+	$(CC) -c $< -o $@ -std=gnu11 $(CFLAGS)
 
 %.o: %.S
-	$(CC) -c $< -o $@ $(CFLAGS) $(CPPFLAGS)
+	$(CC) -c $< -o $@ $(CFLAGS)
 
 %.libk.o: %.c
-	$(CC) -c $< -o $@ -std=gnu11 $(LIBK_CFLAGS) $(LIBK_CPPFLAGS)
+	$(CC) -c $< -o $@ -std=gnu11 $(LIBK_CFLAGS)
 
 %.libk.o: %.S
-	$(CC) -c $< -o $@ $(LIBK_CFLAGS) $(LIBK_CPPFLAGS)
+	$(CC) -c $< -o $@ $(LIBK_CFLAGS)
 
 clean:
 	rm -f $(BINARIES) $(OBJS) $(LIBK_OBJS) *.o */*.o */*/*.o

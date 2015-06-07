@@ -11,6 +11,9 @@
 #include "../arch/i386/idt.h"
 #endif
 
+extern void __KERNEL_START(void);
+extern void __KERNEL_END(void);
+
 void KPANIC(const char* message)
 {
 	printf(message);
@@ -27,8 +30,8 @@ void kernel_init(void)
 void kernel_main(void)
 {	
 	int i = 0;
-	for (; i < 20; i++) 
-	{		
-		printf("Decimal: %d, Hex: %x, Binary: %b\n", i, i, i);
-	}
+	for (; i < 30; i++) 
+    {		
+      printf("Decimal: %d, Hex: %x\n", i, i); 
+    }
 }

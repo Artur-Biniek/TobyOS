@@ -17,7 +17,6 @@ export LIBDIR=$EXEC_PREFIX/lib
 export INCLUDEDIR=$PREFIX/include
 
 export CFLAGS='-O2 -g'
-export CPPFLAGS=''
 export ASFLAGS='-felf32'
 
 # Configure the cross-compiler to use the desired system root.

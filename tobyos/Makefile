@@ -2,7 +2,6 @@ HOST?=$(shell ../default-host.sh)
 HOSTARCH:=$(shell ../target-triplet-to-arch.sh $(HOST))
 
 CFLAGS?=-O2 -g
-CPPFLAGS?=
 ASFLAGS?=
 LDFLAGS?=
 LIBS?=
@@ -13,8 +12,7 @@ EXEC_PREFIX?=$(PREFIX)
 BOOTDIR?=$(EXEC_PREFIX)/boot
 INCLUDEDIR?=$(PREFIX)/include
 
-CFLAGS:=$(CFLAGS) -ffreestanding -fbuiltin -Wall -Wextra
-CPPFLAGS:=$(CPPFLAGS) -D__is_TobyOS_kernel -Iinclude
+CFLAGS:=$(CFLAGS) -ffreestanding -fbuiltin -Wall -Wextra -D__is_TobyOS_kernel -Iinclude
 ASFLAGS:=$(ASFLAGS)
 LDFLAGS:=$(LDFLAGS)
 LIBS:=$(LIBS) -nostdlib -lk -lgcc
@@ -24,7 +22,6 @@ ARCHDIR:=arch/$(HOSTARCH)
 include $(ARCHDIR)/make.config
 
 CFLAGS:=$(CFLAGS) $(KERNEL_ARCH_CFLAGS)
-CPFLAGS:=$(CPPFLAGS) $(KERNEL_ARCH_CPPFLAGS)
 LDFLAGS:=$(LDFLAGS) $(KERNEL_ARCH_LDFLAGS)
 LIBS:=$(LIBS) $(KERNEL_ARCH_LIBS)
 
@@ -54,11 +51,11 @@ all: TobyOS.kernel
 
 .PHONY: all clean install install-headers install-kernel
 
-TobyOS.kernel: $(OBJ_LINK_LIST) $(ARCHDIR)/linker.ld
+TobyOS.kernel: $(OBJ_LINK_LIST) $(ARCHDIR)/linker.ld	
 	$(CC) -T $(ARCHDIR)/linker.ld -o $@ $(CFLAGS) $(OBJ_LINK_LIST) $(LDFLAGS) $(LIBS)
 
 %.o: %.c
-	$(CC) -c $< -o $@ -std=gnu11 $(CFLAGS) $(CPPFLAGS)
+	$(CC) -c $< -o $@ -std=gnu11 $(CFLAGS)
 
 %.o: %.s
 	$(AS) $< -o $@ $(ASFLAGS)
