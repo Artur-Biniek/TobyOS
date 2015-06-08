@@ -21,9 +21,9 @@ extern void __KERNEL_END (void);
 void 
 kernel_init (void)
 {
-	terminal_initialize ();
-	gdt_initialize ();
-	idt_initialize();
+  terminal_initialize ();
+  gdt_initialize ();
+  idt_initialize();
 }
 
 void NO_INLINE 
@@ -45,9 +45,9 @@ blah (void)
 void
 kernel_main (void)
 {	
-	int i = 0;
+  int i = 0;
 
-	for (; i < 30; i++) 
+  for (; i < 30; i++) 
     {		
       printf("Decimal: %d, Hex: %x\n", i, i); 
     }
