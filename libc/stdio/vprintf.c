@@ -63,29 +63,34 @@ vprintf (const char* restrict format, va_list argp)
       else
         {
           switch (*++p) {
+            
             case 'b':
               i = va_arg (argp, int);
               i = itoa (i, buff, 2);
               print (buff, i);
               written += i;
-              break;            
+              break;     
+                     
             case 'c':         
               buff[0] = va_arg (argp, int);          
               print (buff, 1);
               written++;
-              break;              
+              break;   
+                         
             case 'd':
               i = va_arg (argp, int);
               i = itoa (i, buff, 10);
               print (buff, i);
               written += i;
-              break;            
+              break;   
+                       
             case 's':
               s = va_arg (argp, char *);
               i = strlen (s);
               print (s, i);
               written += i;
-              break;          
+              break;    
+                    
             case 'x':
             case 'p':
               i = va_arg (argp, int);
@@ -93,16 +98,18 @@ vprintf (const char* restrict format, va_list argp)
               print ("0x", 2);
               print (buff, i);
               written += (i + 2);
-              break;          
+              break;    
+                    
             case '%':         
               print (p, 1);
               written++;
-              break;          
+              break;   
+                     
             default:
               print ((p-1), 1);
               print (p, 1);
               written += 2;
-            break;
+              break;
           }
         }
     }
