@@ -2,10 +2,10 @@
 #include <kernel/interrupt.h>
 
 #include <stdio.h>
+#include <debug.h>
 
 
 void interrupt_handler(regs_t regs, uint32_t num, uint32_t err)
-{
-	printf("int %d.", num);
-	KPANIC("Hey!?");	
+{	
+	PANIC("Hey!? UNHANDLED INTERRUPT 0x%x!", err);	
 }

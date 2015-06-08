@@ -93,6 +93,7 @@ int printf(const char* restrict format, ...)
 					break;
 					
 				case 'x':
+        case 'p':
 					i = va_arg(argp, int);
 					i = itoa(i, buff, 16);
 					print(buff, i);

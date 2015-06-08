@@ -1,7 +1,8 @@
 HOST?=$(shell ../default-host.sh)
 HOSTARCH:=$(shell ../target-triplet-to-arch.sh $(HOST))
 
-CFLAGS?=-O2 -g
+#CFLAGS?=-O2 -g
+CFLAGS:= $(CFLAGS) -g -fno-optimize-sibling-calls -fno-omit-frame-pointer
 LDFLAGS?=
 LIBS?=
 
@@ -11,7 +12,7 @@ EXEC_PREFIX?=$(PREFIX)
 INCLUDEDIR?=$(PREFIX)/include
 LIBDIR?=$(EXEC_PREFIX)/lib
 
-CFLAGS:=$(CFLAGS) -Wall -Wextra -D__is_tobyos_libc -Iinclude
+CFLAGS:=$(CFLAGS) -Wall -Wextra -D__is_tobyos_libc -Iinclude 
 LIBK_CFLAGS:=$(CFLAGS) -ffreestanding -fbuiltin -D__is_tobyos_kernel
 
 ARCHDIR:=arch/$(HOSTARCH)
@@ -32,7 +33,8 @@ string/memcpy.o \
 string/memmove.o \
 string/memset.o \
 string/strlen.o \
-debug/debug_backtrace.o
+debug/debug_backtrace.o \
+
 
 HOSTEDOBJS:=\
 $(ARCH_HOSTEDOBJS) \
@@ -41,7 +43,9 @@ OBJS:=\
 $(FREEOBJS) \
 $(HOSTEDOBJS) \
 
-LIBK_OBJS:=$(FREEOBJS:.o=.libk.o)
+LIBK_OBJS:=$(FREEOBJS:.o=.libk.o) \
+debug/kernel/debug_backtrace_all.o \
+debug/kernel/debug_panic.o 
 
 BINARIES=libc.a libg.a libk.a
 

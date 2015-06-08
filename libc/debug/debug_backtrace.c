@@ -1,9 +1,7 @@
-#include <stdarg.h>
-#include <stdbool.h>
-#include <stddef.h>
 #include <stdio.h>
 #include <stdint.h>
-#include <string.h>
+#include <stdarg.h>
+#include <stddef.h>
 #include <debug.h>
 
 void
@@ -19,6 +17,7 @@ debug_backtrace (void)
     {
       printf (" %p", frame[1]);
     }
+  
     
   printf (".\n");
 }
