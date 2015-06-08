@@ -10,7 +10,7 @@ debug_panic (const char *file, int line, const char *function,
 {
   va_list argp;
   
-  printf ("KERNEL PANIC: (%s) %s:%d.\n", function, file, line);
+  printf ("KERNEL PANIC @ %s:%s:%d.\n", function, file, line);
 
   va_start (argp, message);  
   vprintf (message, argp);  

@@ -5,7 +5,8 @@
 #include <debug.h>
 
 
-void interrupt_handler(regs_t regs, uint32_t num, uint32_t err)
-{	
-	PANIC("Hey!? UNHANDLED INTERRUPT 0x%x!", err);	
+void
+interrupt_handler (regs_t regs, uint32_t num, uint32_t err)
+{ 
+  PANIC ("Hey!? UNHANDLED INTERRUPT %x!", err);
 }

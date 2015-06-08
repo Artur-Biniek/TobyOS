@@ -90,8 +90,9 @@ vprintf (const char* restrict format, va_list argp)
             case 'p':
               i = va_arg (argp, int);
               i = itoa (i, buff, 16);
+              print ("0x", 2);
               print (buff, i);
-              written += i;
+              written += (i + 2);
               break;          
             case '%':         
               print (p, 1);
