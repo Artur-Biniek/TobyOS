@@ -7,11 +7,11 @@ printf (const char* format, ...)
 {	
   int written = 0;
   
-	va_list argp;
+  va_list argp;
   
-	va_start (argp, format);	
+  va_start (argp, format);	
   written = vprintf (format, argp);
-	va_end (argp);
+  va_end (argp);
 	
-	return written;
+  return written;
 }

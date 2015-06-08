@@ -10,16 +10,14 @@ debug_panic (const char *file, int line, const char *function,
 {
   va_list argp;
   
-  va_start (argp, message);
-  
   printf ("KERNEL PANIC: (%s) %s:%d.\n", function, file, line);
-  vprintf (message, argp);
-  
+
+  va_start (argp, message);  
+  vprintf (message, argp);  
   va_end (argp);
   
   printf ("\n");
   
-  debug_backtrace ();
-  
+  debug_backtrace ();  
   hang_kernel ();
 }

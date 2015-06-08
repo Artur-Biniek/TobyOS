@@ -1,5 +1,5 @@
 #ifndef _SYS_GCCDEFS_H
-#define _SYS_GCCDEFS_H 1
+#define _SYS_GCCDEFS_H
 
 #define UNUSED __attribute__ ((unused))
 #define NO_RETURN __attribute__ ((noreturn))
