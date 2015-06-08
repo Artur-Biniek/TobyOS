@@ -1,8 +1,7 @@
 HOST?=$(shell ../default-host.sh)
 HOSTARCH:=$(shell ../target-triplet-to-arch.sh $(HOST))
 
-#CFLAGS?=-O2 -g
-CFLAGS:= $(CFLAGS) -g -fno-optimize-sibling-calls -fno-omit-frame-pointer
+CFLAGS?= -O2
 ASFLAGS?=
 LDFLAGS?=
 LIBS?=
@@ -68,8 +67,8 @@ install: install-headers install-kernel
 
 install-headers:
 	mkdir -p $(DESTDIR)$(INCLUDEDIR)
-	cp -RTv include $(DESTDIR)$(INCLUDEDIR)
+	cp -RTuv include $(DESTDIR)$(INCLUDEDIR)
 
 install-kernel: TobyOS.kernel
 	mkdir -p $(DESTDIR)$(BOOTDIR)
-	cp TobyOS.kernel $(DESTDIR)$(BOOTDIR)
+	cp -u TobyOS.kernel $(DESTDIR)$(BOOTDIR)

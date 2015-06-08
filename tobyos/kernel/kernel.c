@@ -15,22 +15,44 @@
 #include "../arch/i386/idt.h"
 #endif
 
-extern void __KERNEL_START(void);
-extern void __KERNEL_END(void);
+extern void __KERNEL_START (void);
+extern void __KERNEL_END (void);
 
-void kernel_init(void)
+void 
+kernel_init (void)
 {
-	terminal_initialize();
-	gdt_initialize();
+	terminal_initialize ();
+	gdt_initialize ();
 	idt_initialize();
 }
 
-void kernel_main(void)
+void NO_INLINE 
+blah_inner (int x)  
+{
+  asm ("");
+  PANIC ("Kurcze.. %d", x);
+  asm ("");
+}
+
+void NO_INLINE
+blah (void)
+{
+  asm ("");
+  blah_inner (5);
+  asm ("");
+}
+
+void
+kernel_main (void)
 {	
 	int i = 0;
-  int g = 5 / i;
-	for (; i < 30 + g; i++) 
+
+	for (; i < 30; i++) 
     {		
       printf("Decimal: %d, Hex: %x\n", i, i); 
     }
+    
+  ASSERT(i == 1);
+    
+  blah ();
 }

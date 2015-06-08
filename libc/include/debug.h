@@ -8,7 +8,6 @@
 void debug_panic (const char *file, int line, const char *function,
                   const char *message, ...) PRINTF_FORMAT (4, 5) NO_RETURN;
 void debug_backtrace (void);
-void debug_backtrace_all (void);
 
 #endif
 
@@ -18,9 +17,9 @@ void debug_backtrace_all (void);
 #ifndef NDEBUG
 #define ASSERT(CONDITION)                                       \
         if (CONDITION) { } else {                               \
-                PANIC ("assertion `%s' failed.", #CONDITION);   \
+                PANIC ("Assertion `%s' failed.", #CONDITION);   \
         }
-#define NOT_REACHED() PANIC ("executed an unreachable statement");
+#define NOT_REACHED() PANIC ("Executed an unreachable statement.");
 #else
 #define ASSERT(CONDITION) ((void) 0)
 #define NOT_REACHED() for (;;)

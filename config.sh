@@ -16,7 +16,7 @@ export BOOTDIR=/boot
 export LIBDIR=$EXEC_PREFIX/lib
 export INCLUDEDIR=$PREFIX/include
 
-export CFLAGS='-O2 -g'
+export CFLAGS='-g -fno-optimize-sibling-calls -fno-omit-frame-pointer'
 export ASFLAGS='-felf32'
 
 # Configure the cross-compiler to use the desired system root.

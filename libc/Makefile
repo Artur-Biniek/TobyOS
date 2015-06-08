@@ -1,8 +1,7 @@
 HOST?=$(shell ../default-host.sh)
 HOSTARCH:=$(shell ../target-triplet-to-arch.sh $(HOST))
 
-#CFLAGS?=-O2 -g
-CFLAGS:= $(CFLAGS) -g -fno-optimize-sibling-calls -fno-omit-frame-pointer
+CFLAGS?=-O2
 LDFLAGS?=
 LIBS?=
 
@@ -24,6 +23,7 @@ LIBK_CFLAGS:=$(LIBK_CFLAGS) $(KERNEL_ARCH_CFLAGS)
 
 FREEOBJS:=\
 $(ARCH_FREEOBJS) \
+stdio/vprintf.o \
 stdio/printf.o \
 stdio/putchar.o \
 stdio/puts.o \
@@ -44,7 +44,6 @@ $(FREEOBJS) \
 $(HOSTEDOBJS) \
 
 LIBK_OBJS:=$(FREEOBJS:.o=.libk.o) \
-debug/kernel/debug_backtrace_all.o \
 debug/kernel/debug_panic.o 
 
 BINARIES=libc.a libg.a libk.a
@@ -81,8 +80,8 @@ install: install-headers install-libs
 
 install-headers:
 	mkdir -p $(DESTDIR)$(INCLUDEDIR)
-	cp -RTv include $(DESTDIR)$(INCLUDEDIR)
+	cp -RTuv include $(DESTDIR)$(INCLUDEDIR)
 
 install-libs: $(BINARIES)
 	mkdir -p $(DESTDIR)$(LIBDIR)
-	cp $(BINARIES) $(DESTDIR)$(LIBDIR)
+	cp -u $(BINARIES) $(DESTDIR)$(LIBDIR)
