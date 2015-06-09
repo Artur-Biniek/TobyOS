@@ -17,7 +17,7 @@ export LIBDIR=$EXEC_PREFIX/lib
 export INCLUDEDIR=$PREFIX/include
 
 export CFLAGS='-g -fno-optimize-sibling-calls -fno-omit-frame-pointer'
-export ASFLAGS='-felf32'
+export ASFLAGS='-g -felf32'
 
 # Configure the cross-compiler to use the desired system root.
 export CC="$CC --sysroot=$PWD/sysroot"
