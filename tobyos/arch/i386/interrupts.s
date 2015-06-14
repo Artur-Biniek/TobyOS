@@ -1,5 +1,5 @@
 %macro interrupt_no_error 1
-global interrupt_handler_%1
+
 [section .code]
 interrupt_handler_%1:
         push 0
@@ -7,10 +7,11 @@ interrupt_handler_%1:
         jmp interrupt_handler_common
 [section .data]
         dd interrupt_handler_%1
+
 %endmacro
 
 %macro interrupt_error_code 1
-global interrupt_handler_%1
+
 [section .code]
 interrupt_handler_%1:
         ; [esp] = error code pushed by cpu
@@ -18,6 +19,7 @@ interrupt_handler_%1:
         jmp interrupt_handler_common
 [section .data]
         dd interrupt_handler_%1
+
 %endmacro
 
 global interrupt_handler_null

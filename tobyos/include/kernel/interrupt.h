@@ -3,7 +3,7 @@
 
 #include "../arch/i386/idt.h"
 
-void interrupt_handler(regs_t regs, uint32_t num, uint32_t err);
+#define INTR_SYS_CALL_NUM 0x26
 
 #endif
 

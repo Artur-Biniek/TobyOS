@@ -23,15 +23,20 @@ kernel_init (void)
 {
   terminal_initialize ();
   gdt_initialize ();
-  idt_initialize();
+  idt_initialize ();
+  intr_initialize ();
 }
 
 void
 kernel_main (void)
 { 
-  int i = 0;
+  int i = 0;  
 
   asm volatile ("int $0x26");
+  
+  asm volatile ("int $0x26");
+  
+  puts("");
 
   ASSERT(i == 1);
 }
