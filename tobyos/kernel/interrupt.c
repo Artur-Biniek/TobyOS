@@ -1,17 +1,24 @@
 #include <kernel/kernel.h>
 #include <kernel/interrupt.h>
 
+#if defined (__i386__)
 #include "../arch/i386/idt.h"
+#include "../arch/i386/asm.h"
+#endif
 
+#include <stdint.h>
 #include <stdio.h>
 #include <debug.h>
 
 #define EXCEPT_NUM_ENTRIES 20
-
-typedef void intr_handler_t (size_t);
+#define INTR_FLAG_IF      0x00000200 
+#define INTR_EXTERN_START 0x30
+#define INTR_EXTERN_END   0x3f
 
 static intr_handler_t *intr_handlers[IDT_NUM_ENTRIES];
 static char* intr_name[IDT_NUM_ENTRIES];
+
+static bool is_in_external_interrupt;
 
 static char* exception_names[] =
 {
@@ -44,14 +51,59 @@ system_call (size_t number)
 }
 
 static void NO_RETURN
-unhandled_interrupt (size_t num)
+unhandled_interrupt (uint8_t num)
 {
    PANIC ("UNHANDLED INTERRUPT (%x - %s)!", num, intr_name[num]);
 }
 
+bool
+intr_context (void)
+{
+  return is_in_external_interrupt;
+}
+
+enum intr_status
+intr_get_status (void)
+{
+  uint32_t flags;
+
+  asm volatile ("pushfl; popl %0" : "=g" (flags));
+
+  return flags & INTR_FLAG_IF ? INTR_ON : INTR_OFF;
+}
+
+enum intr_status
+intr_set_status (enum intr_status status)
+{
+  return status == INTR_ON ? intr_enable () : intr_disable ();
+}
+
+enum intr_status
+intr_enable (void) 
+{
+  enum intr_status old_status = intr_get_status ();
+  
+  ASSERT (!intr_context ());
+
+  asm volatile ("sti");
+
+  return old_status;
+}
+
+enum intr_status
+intr_disable (void) 
+{
+  enum intr_status old_status = intr_get_status ();
+
+  asm volatile ("cli" : : : "memory");
+
+  return old_status;
+}
+
 void
-interrupt_handler (regs_t regs, size_t num, uint32_t err)
+interrupt_handler (intr_frame_t frame, uint8_t num, uint32_t err)
 {    
+  
   (*intr_handlers[num]) (num);
 }
 
@@ -59,6 +111,8 @@ void
 intr_initialize (void)
 {
   int i;
+
+  idt_initialize ();
   
   for (i = 0; i < EXCEPT_NUM_ENTRIES; i++)
     {
@@ -70,7 +124,7 @@ intr_initialize (void)
       intr_name[i] = "UNKNOWN";
     }    
    
-  for (i = 0; i < EXCEPT_NUM_ENTRIES; i++)
+  for (i = 0; i < IDT_NUM_ENTRIES; i++)
     {
       intr_handlers[i] = &unhandled_interrupt;
     }

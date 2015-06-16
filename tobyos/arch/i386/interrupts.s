@@ -27,31 +27,17 @@ interrupt_handler_null:
         iret
   
 interrupt_handler_common:
-        extern interrupt_handler
-
-        cli
+        extern interrupt_handler        
   
-        push eax
-        push ecx
-        push edx
-        push ebx
-        push esp
-        push ebp
-        push esi
-        push edi
+        pushad
   
+        cld
+        
       ; TODO: might be worth storing CR0 here in case of page faults..
   
         call interrupt_handler  
   
-        pop edi
-        pop esi
-        pop ebp
-        add esp, 4  ; Esp may not be defined, don't bother to pop.
-        pop ebx
-        pop edx
-        pop ecx
-        pop eax
+        popad
   
         add esp, 8  ; Remove int_no and err_code  
   

@@ -12,7 +12,6 @@
 
 #if defined (__i386__)
 #include "../arch/i386/gdt.h"
-#include "../arch/i386/idt.h"
 #endif
 
 extern void __KERNEL_START (void);
@@ -23,7 +22,7 @@ kernel_init (void)
 {
   terminal_initialize ();
   gdt_initialize ();
-  idt_initialize ();
+
   intr_initialize ();
 }
 
@@ -34,7 +33,7 @@ kernel_main (void)
 
   asm volatile ("int $0x26");
   
-  asm volatile ("int $0x26");
+  asm volatile ("int $0xF0");
   
   puts("");
 

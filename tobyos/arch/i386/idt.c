@@ -1,6 +1,8 @@
 #include <kernel/kernel.h>
 #include <sys/gccdefs.h>
 
+#include "asm.h"
+#include "gdt.h"
 #include "idt.h"
 
 typedef struct
@@ -23,7 +25,7 @@ extern interrupt_stub *interrupt_stubs[IDT_NUM_ENTRIES];
 
 static idt_entry_t idt_entries[IDT_NUM_ENTRIES];
 
-static void 
+void 
 idt_set_gate (uint8_t number, uint16_t segment, uintptr_t base, uint8_t flags)
 {
   idt_entry_t* entry = & idt_entries[number];

@@ -5,6 +5,15 @@
 
 #include "asm.h"
 
+#define GDT_NLSEG 0x00
+#define GDT_KCSEG 0x08
+#define GDT_KDSEG 0x10
+#define GDT_UCSEG 0x18
+#define GDT_UDSEG 0x20
+// #define GDT_TSS   0x28
+
+#define GDT_NUM_ENTRIES  5
+
 void gdt_initialize(void);
 
 #endif
