@@ -21,6 +21,9 @@ typedef struct
     uint32_t edx;
     uint32_t ecx;
     uint32_t eax;
+    
+    uint32_t intr_num;
+    uint32_t err;
   } intr_frame_t;
 
 typedef void intr_handler_t (intr_frame_t *);

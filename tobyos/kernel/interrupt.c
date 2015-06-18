@@ -45,15 +45,15 @@ static char* exception_names[] =
 };
 
 static void
-system_call (size_t number)
+system_call (UNUSED intr_frame_t * frame)
 {
   printf ("System call.");
 }
 
 static void NO_RETURN
-unhandled_interrupt (uint8_t num)
+unhandled_interrupt (intr_frame_t * frame)
 {
-   PANIC ("UNHANDLED INTERRUPT (%x - %s)!", num, intr_name[num]);
+   PANIC ("UNHANDLED INTERRUPT (%x - %s)!", frame->intr_num, intr_name[frame->intr_num]);
 }
 
 bool
@@ -101,10 +101,11 @@ intr_disable (void)
 }
 
 void
-interrupt_handler (intr_frame_t frame, uint8_t num, uint32_t err)
+interrupt_handler (intr_frame_t frame)
 {    
+  ASSERT (frame.intr_num < IDT_NUM_ENTRIES);
   
-  (*intr_handlers[num]) (num);
+  (*intr_handlers[frame.intr_num]) (&frame);
 }
 
 void

@@ -5,6 +5,7 @@
 
 #include <kernel/kernel.h>
 #include <kernel/tty.h>
+#include <kernel/interrupt.h>
 
 #include <sys/gccdefs.h>
 

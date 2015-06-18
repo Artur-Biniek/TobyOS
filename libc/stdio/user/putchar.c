@@ -1,8 +1,9 @@
 #include <stdio.h>
+#include <sys/gccdefs.h>
 
 int
-putchar (int ic)
-{	
+putchar (UNUSED int ic)
+{ 
   // TODO: Implement a write system call.
   return 0;
 }
